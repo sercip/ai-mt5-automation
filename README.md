@@ -1,128 +1,151 @@
-# AI‑Driven MetaTrader 5 Autonomous Trading System  
-### Designed, Architected and Directed by Serkan
+```markdown
+# Serkan's Ethical AI Trading System  
+Modüler, güvenli, izlenebilir ve sürekli geliştirilebilir bir otomatik işlem mimarisi.
 
-## 📌 Overview
-Bu proje, MetaTrader 5 üzerinde tam otonom çalışan bir işlem otomasyon sistemi geliştirme vizyonunun ürünüdür.  
-Sistem; MQL5 Expert Advisor üretimi, Python tabanlı orkestrasyon, hata tespiti, otomatik düzeltme, strateji adaptasyonu ve bütçe yönetimi gibi bileşenleri tek bir çatı altında toplar.
+Bu proje, yapay zekâya verilen sermayeyi **nasıl yönettiğini gözlemlemek**,  
+**davranışını analiz etmek**, **sürekli geliştirmek** ve  
+uzun vadede profesyonel bir finans operatörü gibi çalışmasını sağlamak amacıyla tasarlanmıştır.
 
-Amaç, klasik “EA yaz – compile et – grafiğe ekle” döngüsünü tamamen ortadan kaldırıp, **kendi kendini yöneten bir trading zekâsı** oluşturmaktır.
-
-Bu proje, insan gözetimi olmadan:
-- Strateji üretebilen  
-- EA yazabilen  
-- Derleyebilen  
-- MT5 üzerinde çalıştırabilen  
-- Hataları analiz edip düzeltebilen  
-- Risk ve bütçe yönetimi yapabilen  
-- Kendi kendine optimize olabilen  
-
-bir **agentic trading system** mimarisidir.
+Sistem; AI, güvenlik, loglama, MT5 bağlantısı ve operatör kontrolü gibi  
+katmanlardan oluşan profesyonel bir mimariye sahiptir.
 
 ---
 
-## 🎯 Amaç
-Bu proje, sadece bir EA üretmek için değil;  
-**MT5 üzerinde tam otonom bir yapay zekâ ajanının çalışabilmesi için gerekli altyapıyı kurmak** amacıyla tasarlandı.
+## 🚀 Amaç
 
-Sistem şu yetenekleri hedefler:
-- MQL5 EA dosyalarını otomatik üretme  
-- MetaEditor üzerinden compile etme  
-- EA’yı grafiğe ekleme  
-- AutoTrading kontrolü  
-- Log takibi ve hata tespiti  
-- Hatalara göre EA kodunu yeniden üretme  
-- Strateji optimizasyon döngüleri  
-- **Python tarafına verilen bir bütçeyi yönetme ve bu bütçeyi kendi kararlarıyla kullanma**  
-  - İşlem başına risk ayarlama  
-  - Pozisyon büyüklüğü hesaplama  
-  - Günlük/haftalık kayıp limitleri  
-  - Bütçe tükenince sistemi durdurma veya strateji değiştirme  
+Bu sistemin amacı:
 
-Bu yapı, gerçek anlamda **otonom finansal karar verme** sisteminin temelini oluşturur.
+- AI’nın sermaye yönetim davranışını gözlemlemek  
+- Bu davranışı zaman içinde geliştirmek  
+- Riskleri kontrol altında tutmak  
+- Modüler ve genişletilebilir bir mimari sunmak  
+- MT5 üzerinde disiplinli, tutarlı ve şeffaf işlem yürütmek  
+- Uzun vadede AI’nın profesyonel bir finans operatörü gibi çalışmasını sağlamak  
+
+Bu proje **kâr odaklı değildir**.  
+Odak noktası **davranış analizi + gelişim + profesyonel mimari**dir.
 
 ---
 
-## 🧠 Neden OpenAI Operator?
-Standart LLM’ler:
-- MT5’i açamaz  
-- MetaEditor’da compile edemez  
-- EA’yı grafiğe sürükleyemez  
-- AutoTrading’i aktif edemez  
-- Log okuyup aksiyon alamaz  
-- Ekran üzerinden karar veremez  
+## 🧩 Mimari Yapı
 
-Bu proje, tam da bu nedenle **OpenAI Operator** için gerçek bir kullanım senaryosudur.
+Proje aşağıdaki modüllerden oluşur:
 
-Operator’ın sağlayacağı:
-- Ekran anlama  
-- Mouse/klavye kontrolü  
-- Uygulama seviyesinde otomasyon  
-- Hata sonrası kendi kendine düzeltme  
-- Çok adımlı görev planlama  
+```
+python/
+│
+├── ai_agent_interface.py   → Yapay zekâ strateji üreticisi
+├── mt5_controller.py       → MT5 bağlantı ve işlem kontrol katmanı
+├── safety_engine.py        → Risk ve güvenlik filtresi
+├── logging_engine.py       → Loglama ve izlenebilirlik sistemi
+├── orchestrator.py         → Sistemin beyni (tüm modülleri yönetir)
+└── operator_client.py      → Operatör arayüzü (manuel kontrol)
+```
 
-gibi yetenekler, bu sistemi tam otonom hale getirecek.
+Her dosya **tek sorumluluk prensibi** ile yazılmıştır.  
+Modüller birbirine sıkı bağlı değildir; bu sayede sistem genişletilebilir.
 
 ---
 
-## 🧩 Sistem Mimarisi
+## 🧠 Modüllerin Açıklaması
 
+### **1. AI Agent Interface**
+- Strateji üretir  
+- MQL5 kodu oluşturabilir  
+- Gerçek AI modeline bağlanmaya hazırdır  
+- Şu anda simülasyon modundadır  
 
-Serkan (Mimar)
-↓
-AI Agent (Kod üretimi + hata düzeltme + strateji planlama)
-↓
-Python Orchestrator (Dosya yönetimi + MT5 entegrasyonu + bütçe yönetimi)
-↓
-MetaTrader 5 / MetaEditor
+### **2. MT5 Controller**
+- MT5 terminaline bağlanır  
+- İşlem açar / kapatır  
+- Bağlantı durumunu yönetir  
+- Orchestrator dışında kimse doğrudan kullanmaz  
 
+### **3. Safety Engine**
+- Risk limitlerini uygular  
+- Yasaklı sembolleri engeller  
+- Lot miktarını güvenli seviyeye çevirir  
+- Confidence değerlerini kontrol eder  
 
-### Bileşenler:
-- **AI Agent**  
-  - Strateji açıklamasından EA üretir  
-  - Compile hatalarını analiz eder  
-  - Kodu yeniden düzenler  
-  - Piyasa koşullarına göre strateji önerir  
+### **4. Logging Engine**
+- Tüm olayları kayıt altına alır  
+- Strateji logları  
+- İşlem logları  
+- Sistem logları  
+- İzlenebilirlik sağlar  
 
-- **Python Orchestrator**  
-  - EA dosyalarını oluşturur  
-  - MetaEditor derleme sürecini tetikler  
-  - Logları izler  
-  - Bütçe yönetimi yapar  
-  - Risk parametrelerini dinamik olarak ayarlar  
-  - Gerekirse AI’a geri bildirim gönderir  
+### **5. Orchestrator**
+- Sistemin beynidir  
+- AI → Safety → MT5 akışını yönetir  
+- Operatör isteklerini işler  
+- Her modülü koordine eder  
 
-- **MT5 / MetaEditor**  
-  - EA’yı çalıştırır  
-  - İşlemleri yürütür  
-  - Log üretir  
-
----
-
-## 🚀 Özellikler
-- Dinamik MQL5 EA üretimi  
-- Otomatik derleme  
-- Otomatik grafik ekleme  
-- AutoTrading kontrolü  
-- Log tabanlı adaptasyon  
-- Strateji güncelleme döngüleri  
-- Çoklu sembol desteği (planlanan)  
-- **Bütçe tabanlı risk yönetimi**  
-- **Otonom pozisyon büyüklüğü hesaplama**  
-- **Kayıp limiti kontrolü**  
+### **6. Operator Client**
+- Manuel işlem açma isteği  
+- Manuel kapatma isteği  
+- AI strateji önizleme  
+- Log okuma  
+- Sistem durumu görüntüleme  
 
 ---
 
-## 🔮 Yol Haritası
-- Risk yönetimi modülü (gelişmiş)  
-- Çoklu sembol otonom işlem  
-- Portföy seviyesinde karar verme  
-- Anomali tespiti  
-- Reinforcement Learning tabanlı optimizasyon  
-- Tam otonom “meta-brain” kontrol katmanı  
-- Bütçe yönetimi için davranışsal ekonomi modelleri  
+## 🔒 Sistem Felsefesi
+
+**“Bu sistem, AI’nın sermaye yönetim davranışını sürekli geliştirerek, sonunda profesyonel bir finans operatörü gibi çalışmasını sağlamak için tasarlanmıştır.”**
+
+- Sistem kontrollü çalışır  
+- Risk yönetimi otomatik uygulanır  
+- Tüm kararlar izlenebilir  
+- Loglama zorunludur  
+- AI’nın davranışı şeffaf şekilde gözlemlenir  
+
+Bu proje herhangi bir “insan vs AI” felsefesine dayanmaz.  
+Odak tamamen **performans**, **davranış**, **gelişim** ve **mühendisliktir**.
 
 ---
 
-## 🧾 Not
-Bu proje, Serkan tarafından tasarlanmış ve geliştirilmekte olan bir **gerçek dünya otonom işlem sistemi** mimarisidir.  
-OpenAI Operator erişimi, bu sistemin tam potansiyeline ulaşması için kritik öneme sahiptir.
+## ▶️ Çalıştırma
+
+1. Python ortamını hazırlayın  
+2. MT5 terminalinin açık olduğundan emin olun  
+3. Orchestrator’ı başlatın:
+
+```bash
+python orchestrator.py
+```
+
+4. Operatör arayüzü ile etkileşime geçin:
+
+```python
+from operator_client import OperatorClient
+```
+
+---
+
+## 📌 Notlar
+
+- Sistem modülerdir, her katman bağımsız geliştirilebilir  
+- AI gerçek modele bağlanmaya hazırdır  
+- Safety Engine genişletilebilir  
+- Logging Engine profesyonel format kullanır  
+- Orchestrator tüm akışı yönetir  
+
+---
+
+## 👤 Tasarımcı
+
+Bu mimari **Serkan** tarafından tasarlanmış,  
+AI davranış analizi ve profesyonel finans otomasyonu vizyonu ile geliştirilmiştir.
+
+```
+“Davranış + Gelişim + Profesyonel Mimari”
+```
+
+---
+
+## 📄 Lisans
+
+Bu proje kişisel kullanım içindir.  
+Ticari kullanım için izin gereklidir.
+```
+
